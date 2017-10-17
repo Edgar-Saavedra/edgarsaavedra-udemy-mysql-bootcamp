@@ -110,3 +110,29 @@ A sql udemy course.
 - `SHOW COLUMNS FROM tableName` see structure in table
 - `DESC tableName` same as `SHOW COLUMNS FROM tableName`
 - `DROP TABLE tableName` to delete a table in db
+
+<h2 id="sec-4">Inserting data</h2>
+
+- to inset data into table
+  - ```sql
+    INSERT INTO tableNAME(columnName,columnName) VALUES ('value 1',7);
+    ``` 
+  - ```sql
+    CREATE TABLE cats(name VARCHAR(50),age INT );
+    ```
+  - ```sql
+    INSERT INTO cats(name,age)
+    VALUES('blue',1);
+    ```
+  - ```sql  
+    # to insert multiple
+    INSTER INTO cats(name,age)
+    VALUES ('Charlie',10),
+           ('Sadie',3),
+           ('Lazy Bear',1);
+    ```      
+- To see data, use SELECT: 
+  - ```sql
+    # to see all data;
+    SELECT * FROM cats;
+    ```
