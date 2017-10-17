@@ -8,6 +8,7 @@ A sql udemy course.
 | [Instillation](#v-10) | Installing |
 | [Basic Commnands](#v-17) |help; show databases|
 | [Using Tables](#sec-3) | create, destroy tables and add columns |
+| [Inserting Data](#sec-4) | Inserting values, SELECT |
 
 <h2 id="v-4">Intro</h1>
 
