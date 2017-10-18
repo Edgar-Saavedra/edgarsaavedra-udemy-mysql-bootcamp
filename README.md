@@ -132,8 +132,94 @@ A sql udemy course.
            ('Sadie',3),
            ('Lazy Bear',1);
     ```      
-- To see data, use SELECT: 
-  - ```sql
-    # to see all data;
-    SELECT * FROM cats;
-    ```
+  - To see data, use SELECT: 
+    - ```sql
+      # to see all data;
+      SELECT * FROM cats;
+      ```
+  - ## Errors
+    - `SHOW WARNINGS` will show all errors
+    - Passing invalid data type to INT it will add as 0
+    - `SHOW WARNINGS` only show for the previous commnad given
+      - Programming languages will describe warning.
+  - ## NULL column
+    - null means an unspecified value
+    - null happens by default
+    - ```sql
+      CREATE TABLE cats2 (
+        name VARCHAR(100) NOT NULL,
+        age INT NOT NULL
+      )
+      ```
+    - doing something like `insert into cats2(name) values('texas');`
+      we will get   `Query OK, 1 row affected, 1 warning (0.00 sec)`
+      `> SHOW WARNINGS;` 
+      ```
+      +---------+------+------------------------------------------+
+      | Level   | Code | Message                                  |
+      +---------+------+------------------------------------------+
+      | Warning | 1364 | Field 'age' doesn't have a default value |
+      +---------+------+------------------------------------------+
+      1 row in set (0.00 sec)
+      ```
+    - this is becuase we do not allow null, and we are given a default value of 0 since we didn't specify a default value  
+    - ## DEFAULT VALUES
+      - ```sql
+        CREATE TABLE cats3 (
+          name VARCHAR(100) DEFAULT 'unnamed',
+          age INT DEFAULT 99
+        );
+        ```
+      - We could do something like `INSERT INTO cats3() VALUES()`
+    - ## NOT NULL 
+      - ```sql
+        CREATE TABLE cats4 (
+          name VARCHAR(100) NOT NULL DEFAULT 'unnamed',
+          age INT NOT NULL DEFAULT 99
+        );
+        ```
+        -  This will prevent us from doing `insert into cats4(name,age) values(null,null);` and get something like `ERROR 1048 (23000): Column 'name' cannot be null`
+    -  ## Primary keys
+      -  Primary keys help distinguish between identical data
+      -  A way to identify a row
+      -  ```sql
+        CREATE TABLE unique_cats (
+          cat_id INT NOT NULL,
+          name VARCHAR(100),
+          age INT,
+          PRIMARY KEY (cat_id) # < --- 
+        );
+        ```
+      - ## AUTO_INCREMENT
+        ```sql
+        CREATE TABLE unique_cats2 (
+          cat_id INT NOT NULL AUTO_INCREMENT,
+          name VARCHAR(100),
+          age INT,
+          PRIMARY KEY (cat_id)
+        );
+        ```
+        And we can just add to the table without specifying a key value
+        AUTO_INCREMENT is added to EXTRAS  
+        ```
+        +--------+--------------+------+-----+---------+----------------+
+        | Field  | Type         | Null | Key | Default | Extra          |
+        +--------+--------------+------+-----+---------+----------------+
+        | cat_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+        | name   | varchar(100) | YES  |     | NULL    |                |
+        | age    | int(11)      | YES  |     | NULL    |                |
+        +--------+--------------+------+-----+---------+----------------+ 
+        ```
+      - ## Putting all together
+        - ```sql
+          CREATE TABLE employes ( 
+            id INT NOT NULL AUTO_INCREMENT , #PRIMARY KEY **it can be added here too**,
+            last_name VARCHAR(100) NOT NULL,
+            first_name VARCHAR(100) NOT NULL,
+            middle_name VARCHAR(100), 
+            age INT NOT NULL, 
+            current_status VARCHAR(100) NOT NULL DEFAULT 'employed', 
+            PRIMARY KEY (id) 
+          );
+          ```  
+    
