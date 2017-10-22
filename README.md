@@ -9,7 +9,7 @@ A sql udemy course.
 | [Basic Commnands](#v-17) |help; show databases|
 | [Using Tables](#sec-3) | create, destroy tables and add columns |
 | [Inserting Data](#sec-4) | Inserting values, SELECT |
-
+| [CRUD](#sec-5) ||
 <h2 id="v-4">Intro</h1>
 
 - `SELECT * FROM tableName ;` Will retrive all rows in a table.
@@ -222,4 +222,48 @@ A sql udemy course.
             PRIMARY KEY (id) 
           );
           ```  
-    
+<h2 id="sec-5">CRUD</h2>
+
+- Inserting data INSERT INTO cats(name,age) VALUES('Taco',14);
+- CREATE (C):
+  - ```sql
+    use cat_app;
+    # delete cat table
+    DROP TABLE cats;
+
+    #create cat table
+    CREATE TABLE cats (
+      cat_id INT NOT NULL AUTO_INCREMENT,
+      name VARCHAR(100),
+      breed VARCHAR(100),
+      age INT,
+      PRIMARY KEY (cat_id)
+    );
+
+    DESC cats;
+
+    INSERT INTO cats(name,breed,age) values
+    ('Ringo','Tabby',4)
+    ,('Cindy','Maine Coon',10)
+    ,('Dumbledore', 'Maine Coon',11)
+    ,('Egg','Persian',4)
+    ,('Misty','Tabby',13)
+    ,('George Michael','Ragdoll',9)
+    ,('Jackson','Sphynx',7);
+
+    SELECT * FROM cats;
+    ```
+  - READ (R)
+    - `SELECT` clause
+      - To retrieve use  `SELECT`
+      - `*` means get everything : `SELECT * FROM cats`
+      - We specify which columns we want
+        - `SELECT name FROM cats` , `SELECT age FROM cats`  
+      - We can select multiple columns `SELECT cat_id,age,name FROM cats`
+        - The order matters, `SELECT *` will show us our columns in the order we created it.
+    - THE `WHERE` clause:
+      - `SELECT * FROM cats WHERE age=4;`
+        - This will only select data where age  is 4
+      - Column descriptions in `WHERE` clauses are case in-sensitive 
+        - `SELECT * FROM cats WHERE name='Egg';` is the same as `SELECT * FROM cats WHERE name='EGG';`
+      - To get columns that are the same: `SELECT cat_id,age FROM cats WHERE cat_id=age;`  
