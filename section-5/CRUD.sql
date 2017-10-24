@@ -83,3 +83,34 @@ SELECT name,age FROM cats WHERE breed='Tabby';
 \! echo "SELECT cat_id,age FROM cats WHERE cat_id=age";
 \! echo "*********************************************\n";
 SELECT cat_id,age FROM cats WHERE cat_id=age;
+
+\! echo "\n********************************************* ";
+\! echo "SELECT cat_id AS id, name FROM cats; # using aliases";
+\! echo "*********************************************\n";
+SELECT cat_id AS id, name, breed FROM cats;
+
+\! echo "\n********************************************* ";
+\! echo "UPDATE cats SET breed='Shorthair' WHERE id=1";
+\! echo "*********************************************\n";
+UPDATE cats SET breed='Shorthair' WHERE cat_id=1;
+UPDATE cats SET name='Jack' where name='Jackson';
+UPDATE cats set breed='British Shorthair' where name='Ringo';
+UPDATE cats set age=12 where breed='Maine Coon';  
+
+\! echo "\n********************************************* ";
+\! echo "SELECT cat_id AS id, name FROM cats; # using aliases";
+\! echo "*********************************************\n";
+SELECT cat_id AS id, name, breed, age FROM cats;
+
+
+\! echo "\n********************************************* ";
+\! echo "DELETE FROM cats WHERE name='Egg'";
+\! echo "*********************************************\n";
+DELETE FROM cats WHERE name='Egg';
+SELECT * FROM cats;
+DELETE FROM cats WHERE age=4;
+SELECT * FROM cats;
+DELETE FROM cats WHERE age=cat_id;
+SELECT * FROM cats;
+DELETE FROM cats;
+SELECT * FROM cats;

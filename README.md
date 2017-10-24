@@ -225,7 +225,7 @@ A sql udemy course.
 <h2 id="sec-5">CRUD</h2>
 
 - Inserting data INSERT INTO cats(name,age) VALUES('Taco',14);
-- CREATE (C):
+- ## CREATE (C):
   - ```sql
     use cat_app;
     # delete cat table
@@ -253,7 +253,7 @@ A sql udemy course.
 
     SELECT * FROM cats;
     ```
-  - READ (R)
+  - ## READ (R)
     - `SELECT` clause
       - To retrieve use  `SELECT`
       - `*` means get everything : `SELECT * FROM cats`
@@ -267,3 +267,15 @@ A sql udemy course.
       - Column descriptions in `WHERE` clauses are case in-sensitive 
         - `SELECT * FROM cats WHERE name='Egg';` is the same as `SELECT * FROM cats WHERE name='EGG';`
       - To get columns that are the same: `SELECT cat_id,age FROM cats WHERE cat_id=age;`  
+    - ## Aliases
+      - Allow us to use different identifiers for columns, this is really useful when joining tables
+  - ## Update (U)
+    - `UPDATE cats SET breed='Shorthair' WHERE id=1`;
+    - always run a select before running update (withouth the update or set)
+      - `SELECT * FROM cats WHERE id=1`;
+      - `UPDATE cats SET breed='Shorthair' WHERE id=1`;
+  - ## Delete (D)
+    - `DELETE FROM cats WHERE name='Egg'` : delete all cats who's name is egg
+      - it is really important to do a select
+      - primary keys are never changed
+    - `DELETE FROM cats` : this deletes all entries;
