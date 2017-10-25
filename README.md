@@ -224,6 +224,7 @@ A sql udemy course.
           ```  
 <h2 id="sec-5">CRUD</h2>
 
+- NOTE : never name column as `size` this can cause error
 - Inserting data INSERT INTO cats(name,age) VALUES('Taco',14);
 - ## CREATE (C):
   - ```sql
