@@ -10,6 +10,7 @@ A sql udemy course.
 | [Using Tables](#sec-3) | create, destroy tables and add columns |
 | [Inserting Data](#sec-4) | Inserting values, SELECT |
 | [CRUD](#sec-5) ||
+| [STRING FUNCTIONS](#sec-7) ||
 <h2 id="v-4">Intro</h1>
 
 - `SELECT * FROM tableName ;` Will retrive all rows in a table.
@@ -280,3 +281,40 @@ A sql udemy course.
       - it is really important to do a select
       - primary keys are never changed
     - `DELETE FROM cats` : this deletes all entries;
+  - MODIFY table 
+      - `ALTER TABLE cats CHANGE username user_name VARCHAR(30)`
+      - `ALTER TABLE users ADD email VARCHAR(100) AFTER username;`
+      - `ALTER TABLE users DROP email`
+  - Functions
+    - `NOW()` to get date
+    - `IN()` This is useful for matching multiple values.
+      - `SELECT * FROM users WHERE created_date IN('monday','tuesday')`
+    - `LIKE` This allows you to do wildcard searches.
+      - `SELECT * FROM users WHERE email LIKE  '%tuts%';`
+    - `ORDER BY Clause` If you want the results to be returned in a specific order, use this clause:
+      - `SELECT * FROM users ORDER BY created_date DESC`
+    - `LIMIT ... OFFSET ...` You can limit the number of returned results.
+      - LIMIT 2 just gets the first 2 results. LIMIT 1 OFFSET 2 gets 1 result, after the first 2 results. LIMIT 2, 1 means the same thing, but note that the first number is the offset and the second number is the limit.
+      - `SELECT * FROM users LIMIT 2, 1`
+
+<h2 id="sec-7">STRING FUNCTIONS</h2>
+
+  - `mysql> source FILENAME` will import a file
+  - [string functions](https://dev.mysql.com/doc/refman/5.7/en/string-functions.html)
+  - Functions 
+    - concat
+      - `SELECT CONCAT(x,y,z ... n )` you can combine columns
+      - `SELECT CONCAT(col1, ' ',col2)`
+      - `SELECT CONCAT('hello','world');`
+      - ```sql
+        SELECT CONCAT(author_fname,' ',author_lname) FROM books;
+        SELECT CONCAT(author_fname,' ',author_lname) AS 'full name' FROM books;
+        SELECT author_fname AS first, author_lname AS last, CONCAT(author_fname,' ',author_lname) AS full
+              FROM books;
+        ```
+    - CONCAT_WS : to concat with patterns
+      - `SELECT CONCAT_WS(' - ', title, author_fname, author_lname) from books;`
+  
+<h2 id="additional">Additional resources</h2>
+
+  - [tuts-1](https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274)
