@@ -314,6 +314,32 @@ A sql udemy course.
         ```
     - CONCAT_WS : to concat with patterns
       - `SELECT CONCAT_WS(' - ', title, author_fname, author_lname) from books;`
+    - SUBSTRING : allows to select portions of a string.
+      - `SELECT STUBSTRING('HELLO WORLD'1,4);` // indecies start at 1 in my mysql
+      - `SELECT SUBSTRING('Hello World',7);` // returns world
+      - Giving a negative, starts from end to end
+        - `SELECT STRING('Hello World',-3);` // rld
+        - `SELECT STRING('Hello World',-7);` // o World
+      - to print out first 10 caracaters of every title
+        - `SELECT SUBSTRING(title,1,10) AS 'SHORT TITLE' FROM books;` # notice how we pass the table column to function
+        - we can use `SUBSTR()` instead of `SUBSTRING()`
+      - We can combine string funcs.
+        - ```sql 
+          SELECT CONCAT(
+          SUBSTRING(title,1,10),
+          '...') 
+          AS 'SHORT TITLE 2'
+          FROM books;```
+    - REPLACE : replaces parts of a string, and is case sensative
+      - `SELECT REPLACE('HELLO WORDL','HELL','@#@#$')`
+      - `SELECT REPLACE('chees brea',' ',' and ');`
+    - REVERSE : reverses string
+      - `SELECT REPLACE('Hello World')`
+    - CHAR_LENGTH : tells how many characters in a string
+        - `SELECT CHAR_LENGHT('hello world')` // 11
+    - UPPER() and LOWER() : change the case of a string
+      - `SELECT UPPER('Hello world')` // HELLO WORLD
+      - `SELECT LOWER('Hello world')` // hello world
   
 <h2 id="additional">Additional resources</h2>
 

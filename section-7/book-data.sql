@@ -40,3 +40,76 @@ SELECT CONCAT(author_fname,' ',author_lname) AS 'full name' FROM books;
 SELECT author_fname AS first, author_lname AS last, CONCAT(author_fname,' ',author_lname) AS full
 			 FROM books;
 SELECT CONCAT_WS(' - ', title, author_fname, author_lname) from books;
+
+SELECT SUBSTRING(title,1,10) AS 'SHORT TITLE' FROM books;
+SELECT CONCAT(
+	SUBSTRING(title,1,10),
+	'...') 
+	AS 'SHORT TITLE 2'
+	FROM books;
+
+SELECT REPLACE(title, 'e', 3) AS 'Replaced' FROM books;
+
+SELECT SUBSTRING(
+	REPLACE(
+		title,'e','X')
+		,1,10) 
+	AS 'Sub of Replace'	FROM books;
+
+SELECT REVERSE('meow meow');
+SELECT REVERSE(
+	author_fname
+) FROM books;
+
+SELECT CONCAT(author_fname,REVERSE(author_fname)) AS 'Palamdrome' FROM books;
+SELECT CHAR_LENGTH('hello world');
+
+SELECT author_lname AS 'lname', CHAR_LENGTH(author_fname) AS 'lenght' FROM books;
+
+SELECT CONCAT(
+		author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long'
+) FROM books;
+
+SELECT UPPER(title) FROM books;
+SELECT CONCAT(
+	'MY FAVORITE BOOK IS ',
+	UPPER(title)
+) FROM books;
+
+\! echo  "/*****************************************************/" ;
+\! echo  " -- STRING FUNCTION CHALLANGE" ;
+\! echo  "/*****************************************************/" ;
+
+\! echo "1";
+SELECT UPPER(
+	REVERSE('Why does my cat look at me with such hatred?')
+);
+\! echo "\n2";
+SELECT REPLACE(
+	CONCAT('I',' ','like',' ','cats'),' ','-'
+);
+
+\! echo "\n3";
+SELECT REPLACE(
+	title,' ','->'
+) AS title FROM books;
+
+\! echo "\n4";
+SELECT author_lname AS forwards, REVERSE(author_lname) AS backwards FROM books;
+
+
+\! echo "\n5";
+SELECT UPPER(CONCAT(author_fname,' ',author_lname)) AS 'full name in caps' FROM books;
+
+\! echo "\n6";
+SELECT CONCAT(title,' was released in ',released_year) AS 'blurb' FROM books;
+
+\! echo "\n7";
+SELECT title, CHAR_LENGTH(title) AS 'character count' FROM books;
+
+
+\! echo "\n8";
+SELECT CONCAT(SUBSTRING(title,1,10),'...') AS "Short title", 
+	CONCAT(author_lname,',',author_fname) AS 'author', 
+	CONCAT(stock_quantity,' in stock') AS 'Quantity' 
+from books; 
