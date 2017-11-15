@@ -11,6 +11,7 @@ A sql udemy course.
 | [Inserting Data](#sec-4) | Inserting values, SELECT |
 | [CRUD](#sec-5) ||
 | [STRING FUNCTIONS](#sec-7) ||
+| [Advanced SELECT](#sec-8) ||
 <h2 id="v-4">Intro</h1>
 
 - `SELECT * FROM tableName ;` Will retrive all rows in a table.
@@ -312,7 +313,7 @@ A sql udemy course.
         SELECT author_fname AS first, author_lname AS last, CONCAT(author_fname,' ',author_lname) AS full
               FROM books;
         ```
-    - CONCAT_WS : to concat with patterns
+    -  `CONCAT_WS` : to concat with patterns
       - `SELECT CONCAT_WS(' - ', title, author_fname, author_lname) from books;`
     - SUBSTRING : allows to select portions of a string.
       - `SELECT STUBSTRING('HELLO WORLD'1,4);` // indecies start at 1 in my mysql
@@ -340,7 +341,64 @@ A sql udemy course.
     - UPPER() and LOWER() : change the case of a string
       - `SELECT UPPER('Hello world')` // HELLO WORLD
       - `SELECT LOWER('Hello world')` // hello world
-  
+
+
+<h2 id="sec-8">Advanced Select, sorting</h2>  
+  -  `DISTINCT` 
+    - We use with `SELECT` it will give us unique titles
+    - Comes right after SELECT 
+    - EXAMPLE : `SELECT DISTINCT author_lname FROM books`
+    - We can refine `DISTINCT` using `CONCAT`
+      - `SELECT DISTINCT CONCAT(author_fname,' ', author_lname) FROM books;`
+    - We can refine using combining columns
+      - `SELECT DISTINCT author_fname,author_lname FROM books;`
+      - NOTE : this will take into account ALL columns
+  - `ORDER BY`
+    - Used to sort the data, in default it list things in ascending order
+      - ORDER BY last name `SELECT author_lname FROM books ORDER BY author_lname;`
+      - `SELECT title FROM books ORDER BY title`
+    - `DESC` and `ASC` are usde to order decending or ascending
+      - `SELECT author_lname FROM books ORDER BY author_lname DESC;`
+      - numbers workd the same 
+        - `SELECT released_year FROM books ORDER BY release_year;`
+      - multiple columns wont cuase any issues 
+        - `SELECT title,released_year,pages FROM books ORDER BY released_year DESC;`
+    - Quirk : `SELECT title, author_fname, author_lname FROM books ORDER BY 2;`
+      - The 2 in this case means the second column "author_name", the second thing we are selecting
+    - We can order by two columns:
+      - `SELECT author_fname, author_lname FROM books ORDER BY author_fname, author_lname;`
+      - This says: "get author name and last name from books and order FIRST by first name and THEN by Last Name
+  - `LIMIT`
+    - Allows us to give us a number
+      - LIMIT comes LAST
+      - Example : `SELECT title from books LIMIT 3`
+    - Most often we use it with `ORDER BY`
+      - EXAMPLE : `SELECT title, release_year FROM books ORDER BY release_year DESC LIMIT 5`
+      - EXMPALE : `SELECT title,released_year FROM books ORDER BY released_year DESC LIMIT 5` 
+    - We can specify starting POINT and then how many rows after. The starting point starts at 0.
+      - EXAMPLE : `SELECT title,released_year FROM books ORDER BY released_year DESC LIMIT 0,5`
+      - We use limit for example in blog sites to show you paginated posts
+    - There isn't an elegant way to select from a specify starting POINT to the end of table. You have to do Starting POINT and then some gigantic number
+      - EXAMPLE : `SELECT * FROM tbl LIMIT 95, 18446744073709551615;`
+  - `LIKE`
+    - ALlows to perfomr better searching. 
+    - Similar to `WHERE` but allows to do the following
+      - "There's a book I am looking for... ; But cant remember the title!; I know the authors first name is David;"
+      - EXAMPLE : `SELECT * FROM books WHERE author_fname LIKE '%da%'` 
+        - `%` are wild calrds 
+        - `%da%` this says "anything before da and anything after da"
+      - EXAMPLE : `SELECT * FROM books WHERE author_fname LIKE 'the'`
+        - This will look for exactly 'the'
+  - `_`
+    - An underscore describes a digit
+      - EXAMPLE `SELECT * FROM books WHERE sock_quantity LIKE '____'` 
+        - Get all books where stock_quantity is 4 digits
+      - EXAMPLE `SELECT * FROM numbers WHERE phone LIKE '(__)-(___)-(_____)'` 
+  - `\` 
+    - Backslash to escape
+      - EXAMPLE : `SELECT * FROM books WHERE title LIKE '%\%%'`
+        - get everything with a percent sign before and after it.    
+
 <h2 id="additional">Additional resources</h2>
 
   - [tuts-1](https://code.tutsplus.com/articles/sql-for-beginners-part-2--net-8274)
