@@ -344,6 +344,7 @@ A sql udemy course.
 
 
 <h2 id="sec-8">Advanced Select, sorting</h2>  
+
   -  `DISTINCT` 
     - We use with `SELECT` it will give us unique titles
     - Comes right after SELECT 
